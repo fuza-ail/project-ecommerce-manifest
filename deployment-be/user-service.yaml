@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service
+  labels:
+    app: user-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-service
+  template:
+    metadata:
+      labels:
+        app: user-service
+    spec:
+      containers:
+        - name: user-service
+          image: fuzail1991/ecommerce-user-service:latest
+          ports:
+            - containerPort: 3005
+          env:
+            - name: GRPC_HOST
+              value: "0.0.0.0"
+            - name: GRPC_PORT
+              value: "30005"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-service
+spec:
+  selector:
+    app: user-service
+  ports:
+    - protocol: TCP
+      port: 3005
+      targetPort: 3005
+    - protocol: TCP
+      port: 30005
+      targetPort: 30005
