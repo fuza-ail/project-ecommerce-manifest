@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: cart-service
-          image: fuzail1991/ecommerce-cart-service:latest
+          image: fuzail1991/ecommerce-cart-service:14f18c4
           ports:
             - containerPort: 3002
           resources:
