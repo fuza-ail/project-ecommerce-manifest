@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: user-service
-          image: fuzail1991/ecommerce-user-service:latest
+          image: fuzail1991/ecommerce-user-service:9e14f5d
           ports:
             - containerPort: 3005
           env:
